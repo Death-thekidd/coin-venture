@@ -3,6 +3,7 @@ import images from "../constants/images";
 import { Link } from "react-router-dom";
 
 const MainHome = () => {
+	useEffect(() => {}, []);
 	return (
 		<>
 			<section className="breadcrumb-section">
