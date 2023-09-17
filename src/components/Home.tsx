@@ -24,7 +24,7 @@ const Home = () => {
 					<div className="container">
 						<nav className="navbar navbar-expand-lg navbar-light navbar-reset">
 							<a className="logo" href="?a=home">
-								<img className="logo-default" src={images.logo} alt="Bootbox" />
+								<img style={{height: 40, width: "auto"}} className="logo-default" src={images.logo} alt="Bootbox" />
 							</a>
 							<button
 								className="navbar-toggler border-0 p-0"
