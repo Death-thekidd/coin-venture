@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import images from "../constants/images";
 
-const selectState = (state) => state.user;
+const selectState = (state: any) => state.user;
 const Withdraw = () => {
 	const { user, userWallets } = useSelector(selectState);
 	return (
@@ -14,18 +14,18 @@ const Withdraw = () => {
 							<table cellSpacing="0" cellPadding="0" width="100%">
 								<tr>
 									<td height="40">
-										<font color="#FF7810">
+										<span color="#FF7810">
 											Account Balance<b>: </b>
-										</font>
+										</span>
 										$<b>{user?.balance}</b>
 									</td>
 									<td height="40">&nbsp;</td>
 								</tr>
 								<tr>
 									<td height="40">
-										<font color="#FF7810">
+										<span color="#FF7810">
 											Pending Withdrawals<b>: </b>
-										</font>
+										</span>
 										$<b></b>
 									</td>
 									<td height="40">&nbsp;</td>
@@ -64,15 +64,14 @@ const Withdraw = () => {
 										<b>Account</b>
 									</td>
 								</tr>
-								{userWallets?.map((wallet, index) => (
+								{userWallets?.map((wallet: any, index: any) => (
 									<tr key={index}>
 										<td height="40" style={{ paddingLeft: "10px" }}></td>
 										<td height="40" align="left">
 											<img
-												src={images[`${wallet.name}`]}
+												src={images[wallet.name as keyof typeof images]}
 												width="44"
 												height="17"
-												align="absmiddle"
 											/>{" "}
 											{wallet.name}
 										</td>
@@ -101,7 +100,7 @@ const Withdraw = () => {
 
 							<br />
 							<br />
-							<font color="#FF7810">You have no funds to withdraw.</font>
+							<span color="#FF7810">You have no funds to withdraw.</span>
 						</form>
 					</p>
 				</div>
