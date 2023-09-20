@@ -1,6 +1,53 @@
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../features/api/Auth/authApiSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { setUser } from "../../features/User/userSlice";
+
+const selector = (state: any) => state.user;
 
 const Login = () => {
+	const { user } = useSelector(selector);
+	const { register, handleSubmit } = useForm();
+	const location = useLocation();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const [loginUser, { isLoading, isError, error, isSuccess, data }] =
+		useLoginUserMutation();
+	const from = location.state?.from?.pathname || "/dashboard/account";
+	const submitForm = (data: any) => {
+		console.log(data);
+		loginUser(data);
+	};
+	useEffect(() => {
+		if (user) {
+			navigate("/dashboard/account");
+		}
+	}, [user, navigate]);
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("Sign in succesful");
+			console.log(data);
+			dispatch(setUser(data));
+			setTimeout(() => {
+				if (data.isAdmin) navigate("/dashboard/users");
+				else navigate(from);
+			}, 2000);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any).data.message, { position: "top-right" });
+			} else {
+				toast.error("Login Error", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
 	return (
 		<>
 			<section className="bg-gradi sp-100 login-section overflow-hidden d-flex align-items-center min-vh-100">
@@ -13,16 +60,19 @@ const Login = () => {
 										<div className="form-wrap bg-white">
 											<h4 className="btm-sep pb-3 mb-5">Login</h4>
 
-											<form className="form">
+											<form
+												className="form"
+												onSubmit={handleSubmit(submitForm)}
+											>
 												<div className="row">
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-account"></span>
 															<input
 																type="text"
-																name="username"
 																className="form-control"
 																placeholder="Username"
+																{...register("username", { required: true })}
 															/>
 														</div>
 													</div>
@@ -31,9 +81,9 @@ const Login = () => {
 															<span className="zmdi zmdi-key"></span>
 															<input
 																type="password"
-																name="password"
 																className="form-control"
 																placeholder="Password"
+																{...register("password", { required: true })}
 															/>
 														</div>
 													</div>

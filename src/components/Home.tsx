@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import images from "../constants/images";
-
+import { useSelector } from "react-redux";
+const selectState = (state: any) => state.user;
 const Home = () => {
 	useEffect(() => {
 		// Create a script element
@@ -17,6 +18,11 @@ const Home = () => {
 			document.body.removeChild(script);
 		};
 	}, []);
+	const {
+		user,
+		features,
+		deposit: { plans },
+	} = useSelector(selectState);
 	return (
 		<>
 			<header className="header position-relative">
@@ -24,7 +30,12 @@ const Home = () => {
 					<div className="container">
 						<nav className="navbar navbar-expand-lg navbar-light navbar-reset">
 							<a className="logo" href="?a=home">
-								<img style={{height: 40, width: "auto"}} className="logo-default" src={images.logo} alt="Bootbox" />
+								<img
+									style={{ height: 55, width: "auto" }}
+									className="logo-default"
+									src={images.logo}
+									alt="Bootbox"
+								/>
 							</a>
 							<button
 								className="navbar-toggler border-0 p-0"
@@ -67,17 +78,22 @@ const Home = () => {
 											Contact Us
 										</a>
 									</li> */}
-									<li className="nav-item">
-										<Link className="nav-link" to="/signup">
-											Signup
-										</Link>
-									</li>
+									{!user && (
+										<li className="nav-item">
+											<Link className="nav-link" to="/signup">
+												Signup
+											</Link>
+										</li>
+									)}
 								</ul>
-								<div className="my-3 my-lg-0">
-									<Link to="/login" className="btn btn-custom">
-										Login
-									</Link>
-								</div>
+
+								{!user && (
+									<div className="my-3 my-lg-0">
+										<Link to="/login" className="btn btn-custom">
+											Login
+										</Link>
+									</div>
+								)}
 							</div>
 						</nav>
 					</div>
@@ -125,8 +141,12 @@ const Home = () => {
 								<div className="foot-links">
 									{/* <Link to="/rules">Terms</Link> */}
 									{/* <Link to="/support">Contact Us</Link> */}
-									<Link to="/login">Log In</Link>
-									<Link to="/signup">Sign Up</Link>
+									{!user && (
+										<>
+											<Link to="/login">Log In</Link>
+											<Link to="/signup">Sign Up</Link>
+										</>
+									)}
 								</div>
 							</div>
 							<div className="col-md-6 col-xl-3 mb-30">

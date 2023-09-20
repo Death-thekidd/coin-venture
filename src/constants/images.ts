@@ -22,6 +22,26 @@ import team5 from "../assets/team/team_5.jpg";
 import team6 from "../assets/team/team_6.jpg";
 import us from "../assets/us.png";
 import crt from "../assets/us.png";
+import PerfectMoney from "../assets/18.gif";
+import Payeer from "../assets/43.gif";
+import Bitcoin from "../assets/48.gif";
+import Litecoin from "../assets/68.gif";
+import Ethereum from "../assets/69.gif";
+import bg_2 from "../assets/02 (1).png";
+import pattern_1 from "../assets/01.png";
+import litecoin_ from "../assets/litecoin.png";
+import ethereum_ from "../assets/ethereum.png";
+import bitcoin_ from "../assets/bitcoin (1).png";
+import payeer from "../assets/payeer.png";
+import perfectmoney from "../assets/perfectmoney.png";
+import feature_7 from "../assets/feature/07.png";
+import feature_2 from "../assets/feature/02.png";
+import feature_3 from "../assets/feature/03.png";
+import feature_6 from "../assets/feature/06.png";
+import feature_5 from "../assets/feature/05.png";
+import feature_1 from "../assets/feature/01.png";
+import feature_8 from "../assets/feature/08.png";
+
 export default {
 	logo,
 	banner,
@@ -47,4 +67,23 @@ export default {
 	team6,
 	us,
 	crt,
+	PerfectMoney,
+	Payeer,
+	Bitcoin,
+	Litecoin,
+	Ethereum,
+	litecoin_,
+	bitcoin_,
+	ethereum_,
+	payeer,
+	perfectmoney,
+	bg_2,
+	pattern_1,
+	feature_7,
+	feature_2,
+	feature_3,
+	feature_6,
+	feature_5,
+	feature_1,
+	feature_8,
 };

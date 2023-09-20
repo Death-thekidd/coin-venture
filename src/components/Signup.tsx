@@ -1,6 +1,52 @@
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useRegisterUserMutation } from "../features/api/Auth/authApiSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+
+const selector = (state: any) => state.user;
 
 const Signup = () => {
+	const { referralCode } = useParams();
+	const { route, user } = useSelector(selector);
+	console.log(route);
+	const { register, handleSubmit } = useForm();
+	const location = useLocation();
+	const navigate = useNavigate();
+	const [registerUser, { isLoading, isError, error, isSuccess }] =
+		useRegisterUserMutation();
+	const from = location.state?.from?.pathname || "/login";
+	const submitForm = (data: any) => {
+		console.log(data);
+		console.log({ ...data, roles: ["admin"], referralCode: referralCode });
+		registerUser({ ...data, roles: ["admin"], referralCode: referralCode });
+	};
+	useEffect(() => {
+		if (user) {
+			navigate("/dashboard/account");
+		}
+	}, [user, navigate]);
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("You succesfully registered");
+			setTimeout(() => {
+				navigate(from, { state: { background: route } });
+			}, 2000);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any)?.data.message, { position: "top-right" });
+			} else {
+				toast.error("Registration failed", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
 	return (
 		<>
 			<section className="bg-gradi sp-100 login-section overflow-hidden d-flex align-items-center min-vh-100">
@@ -13,44 +59,45 @@ const Signup = () => {
 										<div className="form-wrap bg-white">
 											<h4 className="btm-sep pb-3 mb-5">Register</h4>
 
-											<form className="form">
+											<form
+												onSubmit={handleSubmit(submitForm)}
+												className="form"
+											>
 												<div className="row">
+													/;
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-account"></span>
 															<input
 																type="text"
-																name="fullname"
 																className="form-control"
-																placeholder="Name"
+																placeholder="Your Full Name"
+																{...register("fullname", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-account"></span>
 															<input
 																type="text"
-																name="username"
 																className="form-control"
-																placeholder="Username"
+																placeholder="Your Username"
+																{...register("username", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-key"></span>
 															<input
 																type="password"
-																name="password"
 																className="form-control"
 																placeholder="Password"
+																{...register("password", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-key"></span>
@@ -62,153 +109,106 @@ const Signup = () => {
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-lock"></span>
 															<input
 																type="text"
-																name="pay_account[18]"
-																data-validate="regexp"
-																data-validate-regexp="^U\d{5,}$"
-																data-validate-notice="UXXXXXXX"
-																className="form-control"
-																placeholder="Your PerfectMoney Account"
-															/>
-														</div>
-													</div>
-
-													<div className="col-12">
-														<div className="form-group position-relative">
-															<span className="zmdi zmdi-lock"></span>
-															<input
-																type="text"
-																name="pay_account[43]"
 																data-validate="regexp"
 																data-validate-regexp="^P\d{5,}$"
 																data-validate-notice="PXXXXXXX"
 																className="form-control"
 																placeholder="Your Payeer Account"
+																{...register("payeer", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-lock"></span>
 															<input
 																type="text"
-																name="pay_account[48]"
 																data-validate="regexp"
 																data-validate-regexp="^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$"
 																data-validate-notice="Bitcoin Address"
 																className="form-control"
 																placeholder="Your Bitcoin Account"
+																{...register("bitcoin", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-lock"></span>
 															<input
 																type="text"
-																name="pay_account[68]"
 																data-validate="regexp"
 																data-validate-regexp="^[LM3][a-km-zA-HJ-NP-Z1-9]{25,34}$"
 																data-validate-notice="Litecoin Address"
 																className="form-control"
 																placeholder="Your Litecoin Account"
+																{...register("litecoin", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-lock"></span>
 															<input
 																type="text"
-																name="pay_account[79]"
-																value=""
-																data-validate="regexp"
-																data-validate-regexp="^[DA9][a-km-zA-HJ-NP-Z1-9]{25,34}$"
-																data-validate-notice="Dogecoin Address"
-																className="form-control"
-																placeholder="Your Dogecoin Account"
-															/>
-														</div>
-													</div>
-
-													<div className="col-12">
-														<div className="form-group position-relative">
-															<span className="zmdi zmdi-lock"></span>
-															<input
-																type="text"
-																name="pay_account[69]"
 																data-validate="regexp"
 																data-validate-regexp="^(0x)?[0-9a-fA-F]{40}$"
 																data-validate-notice="Ethereum Address"
 																className="form-control"
 																placeholder="Your Ethereum Account"
+																{...register("ethereum", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-lock"></span>
 															<input
 																type="text"
-																name="pay_account[77]"
-																value=""
-																data-validate="regexp"
-																data-validate-regexp="^[\w\d]{25,43}$"
-																data-validate-notice="Bitcoin Cash Address"
 																className="form-control"
-																placeholder="Your Bitcoin Cash Account"
+																placeholder="Your Usdt Account"
+																{...register("usdt_trc", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-email"></span>
 															<input
 																type="text"
-																name="email"
-																value=""
 																className="form-control"
 																placeholder="Email Address"
+																{...register("email", { required: true })}
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-email"></span>
 															<input
 																type="text"
-																name="email1"
-																value=""
 																className="form-control"
 																placeholder="Retype Email Address"
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<div className="form-group position-relative">
 															<span className="zmdi zmdi-account"></span>
 															<input
 																type="text"
-																value="allmonitors24"
+																value={referralCode}
 																className="form-control"
 																placeholder="Your Upline"
 																disabled
 															/>
 														</div>
 													</div>
-
 													<div className="col-12">
 														<input type="checkbox" name="agree" value="1" /> I
 														agree with{" "}

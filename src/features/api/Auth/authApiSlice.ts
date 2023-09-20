@@ -4,7 +4,7 @@ import { setUser } from "../../User/userSlice";
 export const userApiSlice = createApi({
 	reducerPath: "userApiSlice",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://detroin-backend.vercel.app/",
+		baseUrl: "https://coin-venture-backend.vercel.app/",
 	}),
 	endpoints: (builder) => ({
 		registerUser: builder.mutation({
