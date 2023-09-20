@@ -213,13 +213,11 @@ const Signup = () => {
 														<input type="checkbox" name="agree" value="1" /> I
 														agree with{" "}
 														<a href="?a=rules">Terms and conditions</a>
-														<button
+														<input
 															type="submit"
-															value="Register"
+															value="Sign Up"
 															className="btn btn-lg btn-custom btn-dark btn-block"
-														>
-															Sign Up
-														</button>
+														/>
 													</div>
 												</div>
 											</form>

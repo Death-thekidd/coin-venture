@@ -93,13 +93,11 @@ const Login = () => {
 														</a>
 													</div>
 													<div className="col-12 mt-30">
-														<button
+														<input
 															type="submit"
-															value="Login"
+															value="Sign In"
 															className="btn btn-lg btn-custom btn-dark btn-block"
-														>
-															Sign In
-														</button>
+														/>
 													</div>
 												</div>
 											</form>
