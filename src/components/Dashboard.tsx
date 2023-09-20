@@ -3,12 +3,17 @@ import images from "../constants/images";
 import "./dashboard.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLogoutUserMutation } from "../features/api/Auth/authApiSlice";
+import {
+	useGetUserQuery,
+	useLogoutUserMutation,
+} from "../features/api/Auth/authApiSlice";
 import { setUser } from "../features/User/userSlice";
 
 const selector = (state: any) => state.user;
 
 const DashBoard = () => {
+	const userId = localStorage.getItem("coin_venture_uid");
+	const { data } = useGetUserQuery(userId);
 	const { user } = useSelector(selector);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -16,10 +21,14 @@ const DashBoard = () => {
 	const [logoutUser, {}] = useLogoutUserMutation();
 
 	useEffect(() => {
-		if (!user) {
+		dispatch(setUser(data));
+	}, [data]);
+
+	useEffect(() => {
+		if (!userId) {
 			navigate("/");
 		}
-	}, [user, navigate]);
+	}, [userId, navigate]);
 	return (
 		<>
 			<div className="breadcrumb-section">
@@ -98,6 +107,7 @@ const DashBoard = () => {
 															onClick={() => {
 																logoutUser("");
 																dispatch(setUser(null));
+																localStorage.removeItem("coin_venture_uid");
 															}}
 														>
 															Logout
@@ -112,7 +122,6 @@ const DashBoard = () => {
 						</div>
 					</section>
 				</div>
-
 				<footer
 					className="footer white-bg pos-r o-hidden bg-contain"
 					data-bg-img={images.pattern_1}

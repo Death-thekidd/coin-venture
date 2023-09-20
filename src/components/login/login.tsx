@@ -30,7 +30,7 @@ const Login = () => {
 		if (isSuccess) {
 			toast.success("Sign in succesful");
 			console.log(data);
-			dispatch(setUser(data));
+			localStorage.setItem("coin_venture_uid", data.id);
 			setTimeout(() => {
 				if (data.isAdmin) navigate("/dashboard/users");
 				else navigate(from);

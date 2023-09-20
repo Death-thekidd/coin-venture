@@ -29,7 +29,8 @@ export const userApiSlice = createApi({
 			}),
 		}),
 		getUser: builder.query({
-			query: (id) => `${id}`,
+			query: (id) => `api/test/user/${id}`,
+			transformResponse: (response: any) => response.data,
 		}),
 		loginUser: builder.mutation({
 			query: (payload) => ({

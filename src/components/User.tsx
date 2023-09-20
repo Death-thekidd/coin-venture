@@ -267,7 +267,7 @@ const User = () => {
 									</td>
 								</tr>
 								{data
-									.find((item: any) => item._id == userId)
+									?.find((item: any) => item._id == userId)
 									?.deposits?.map((row: any) => (
 										<tr key={row._id}>
 											<td height="40" align="left">
