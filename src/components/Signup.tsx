@@ -20,8 +20,8 @@ const Signup = () => {
 	const from = location.state?.from?.pathname || "/login";
 	const submitForm = (data: any) => {
 		console.log(data);
-		console.log({ ...data, roles: ["admin"], referralCode: referralCode });
-		registerUser({ ...data, roles: ["admin"], referralCode: referralCode });
+		console.log({ ...data, roles: ["user"], referralCode: referralCode });
+		registerUser({ ...data, roles: ["user"], referralCode: referralCode });
 	};
 	useEffect(() => {
 		if (user) {
