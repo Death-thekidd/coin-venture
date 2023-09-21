@@ -16958,7 +16958,7 @@ section {
 	/* background-color: #ffffff !important; */
 }
 .dark-bg {
-	background-color: #141414;
+	background-color: #87CEEB;
 }
 .grey-bg {
 	/* background-color: #f3f6ff; */
@@ -19174,7 +19174,7 @@ iframe {
 }
 .post .post-desc {
 	padding: 30px 30px 70px;
-	background: #262f5a;
+	background: #87ceeb;
 	margin-bottom: 25px;
 }
 .post .post-desc h5 {
@@ -19187,13 +19187,13 @@ iframe {
 	display: inline-block;
 }
 .post .post-desc h5 a:hover {
-	color: #ff7810;
+	color: #000080;
 }
 .post .post-desc p {
 	margin: 15px 0;
 }
 .post .post-desc .post-date {
-	color: #ff5e2c;
+	color: #000080;
 	font-size: 24px;
 	font-weight: 500;
 }
@@ -19217,7 +19217,7 @@ iframe {
 }
 .post-author span {
 	font-size: 16px;
-	color: #ff7810;
+	color: #000080;
 	font-weight: 500;
 	padding-left: 15px;
 	padding-top: 15px;
@@ -19349,14 +19349,14 @@ iframe {
 }
 
 .widget {
-	background: #262f5a;
+	background: #87CEEB;
 	padding: 30px;
 	margin-bottom: 30px;
 }
 
 /*Widget-Title*/
 .widget-title {
-	color: #111121;
+	color: #000080;
 	display: inline-block;
 	position: relative;
 	width: 100%;
@@ -19432,18 +19432,18 @@ iframe {
 }
 .widget .widget-categories li a {
 	text-transform: capitalize;
-	color: #fff;
+	color: #000;
 	display: block;
 	font-weight: 400;
 }
 .widget .widget-categories li a:hover {
-	color: #ff7810;
+	color: #000080;
 	padding-left: 5px;
 }
 .widget-categories li i {
 	position: absolute;
 	right: 0;
-	color: #ff5e2c;
+	color: #000080;
 }
 
 /*widget-tags*/
@@ -19592,7 +19592,7 @@ iframe {
 	position: relative;
 }
 .featured-item:hover {
-	background: #262f5a;
+	background: #87CEEB;
 }
 .featured-item .featured-icon {
 	display: inline-block;
@@ -19622,7 +19622,7 @@ iframe {
 }
 
 .featured-item.style-3 {
-	background: #262f5a;
+	background: #87CEEB;
 }
 .featured-item.style-3 .featured-icon {
 	position: absolute;
@@ -19643,7 +19643,7 @@ iframe {
 .featured-item.style-4:hover {
 	transform: inherit;
 	border-radius: 15px;
-	background: #262f5a;
+	background: #87CEEB;
 }
 .featured-item.style-4 .featured-icon i {
 	background: #ffffff;

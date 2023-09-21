@@ -99,7 +99,7 @@ const Account = () => {
 									</div>
 									<div className="featured-title">
 										<h6>Last Deposit</h6>
-										<h6>${user.activeDeposit}</h6>
+										<h6>${user?.activeDeposit}</h6>
 									</div>
 								</div>
 							</div>
