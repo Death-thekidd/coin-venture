@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGetUsersQuery } from "../features/api/Auth/authApiSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const selector = (state: any) => state.user;

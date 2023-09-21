@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import images from "../constants/images";
 import "./dashboard.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";

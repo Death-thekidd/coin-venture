@@ -18,11 +18,7 @@ const Home = () => {
 			document.body.removeChild(script);
 		};
 	}, []);
-	const {
-		user,
-		features,
-		deposit: { plans },
-	} = useSelector(selectState);
+	const { user } = useSelector(selectState);
 	return (
 		<>
 			<header className="header position-relative">

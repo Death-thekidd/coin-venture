@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../features/api/Auth/authApiSlice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { setUser } from "../../features/User/userSlice";
 
 const selector = (state: any) => state.user;
 
@@ -13,7 +12,6 @@ const Login = () => {
 	const { register, handleSubmit } = useForm();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const [loginUser, { isLoading, isError, error, isSuccess, data }] =
 		useLoginUserMutation();
 	const from = location.state?.from?.pathname || "/dashboard/account";
