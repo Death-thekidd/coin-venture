@@ -90,6 +90,7 @@ const Home = () => {
 										</Link>
 									</div>
 								)}
+								<div id="google_translate_element"></div>
 							</div>
 						</nav>
 					</div>
@@ -102,15 +103,11 @@ const Home = () => {
 						<div className="row">
 							<div className="col-md-6 col-xl-3 mb-30">
 								<div className="mb-30">
-									<img
-										className="logo-footer"
-										src={images.logo}
-										alt="Bootbox"
-									/>
+									<img className="logo-footer" src={images.logo} alt="Bootbox" />
 								</div>
 								<p className="mb-30 c-white">
-									We are a leading global investment solutions partner,
-									dedicated to improving peoples financial security.
+									We are a leading global investment solutions partner, dedicated to
+									improving peoples financial security.
 								</p>
 								<div className="socials">
 									<a href="#" className="zmdi zmdi-facebook"></a>
@@ -168,9 +165,7 @@ const Home = () => {
 					</div>
 					<div className="copyright text-center c-white">
 						COIN VENTURE LIMITED
-						<span className="d-none d-md-inline-block">
-							All rights reserved.
-						</span>
+						<span className="d-none d-md-inline-block">All rights reserved.</span>
 					</div>
 				</div>
 			</footer>
