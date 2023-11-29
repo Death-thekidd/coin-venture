@@ -79,6 +79,9 @@ AUTHOR URL: https://themeforest.net/user/ajay138/
 	}
 }
 
+body > .skiptranslate {
+	display: none;
+}
 .navbar .nav-item .nav-link {
 	text-transform: capitalize;
 	font-weight: 500;

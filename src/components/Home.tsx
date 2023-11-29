@@ -84,13 +84,13 @@ const Home = () => {
 								</ul>
 
 								{!user && (
-									<div className="my-3 my-lg-0">
+									<div className=" nav-item my-3 my-lg-0">
 										<Link to="/login" className="btn btn-custom">
 											Login
 										</Link>
 									</div>
 								)}
-								<div id="google_translate_element"></div>
+								<div className="nav-item" id="google_translate_element"></div>
 							</div>
 						</nav>
 					</div>
