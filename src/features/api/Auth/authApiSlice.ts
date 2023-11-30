@@ -6,6 +6,7 @@ export const userApiSlice = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://coin-venture-backend.vercel.app/",
 	}),
+	tagTypes: ["User", "Users", "Plans", "Wallets"],
 	endpoints: (builder) => ({
 		registerUser: builder.mutation({
 			query: (payload) => ({
@@ -27,9 +28,23 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			providesTags: ["Users"],
 		}),
 		getUser: builder.query({
 			query: (id) => `api/test/user/${id}`,
+			transformResponse: (response: any) => response.data,
+			providesTags: ["User"],
+		}),
+		updateUser: builder.mutation({
+			query: (payload) => ({
+				url: "/api/test/update-user",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["User"],
 			transformResponse: (response: any) => response.data,
 		}),
 		loginUser: builder.mutation({
@@ -49,6 +64,17 @@ export const userApiSlice = createApi({
 				} catch (error) {}
 			},
 		}),
+		withdrawAmount: builder.mutation({
+			query: (payload) => ({
+				url: "/api/test/withdraw",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["User"],
+		}),
 		depositAmount: builder.mutation({
 			query: (payload) => ({
 				url: "/api/test/deposit",
@@ -58,6 +84,7 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			invalidatesTags: ["User"],
 		}),
 		approveDeposit: builder.mutation({
 			query: (payload) => ({
@@ -68,6 +95,18 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Users"],
+		}),
+		approveWithdrawal: builder.mutation({
+			query: (payload) => ({
+				url: "/api/test/approve-withdrawal",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Users"],
 		}),
 		changeBalance: builder.mutation({
 			query: (payload) => ({
@@ -88,6 +127,7 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Plans"],
 		}),
 		getPlans: builder.query({
 			query: () => ({
@@ -97,6 +137,7 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			providesTags: ["Plans"],
 		}),
 		changeWallet: builder.mutation({
 			query: (payload) => ({
@@ -107,6 +148,7 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Wallets"],
 		}),
 		getWallets: builder.query({
 			query: () => ({
@@ -116,6 +158,7 @@ export const userApiSlice = createApi({
 					"Content-type": "application/json",
 				},
 			}),
+			providesTags: ["Wallets"],
 		}),
 		logoutUser: builder.mutation({
 			query: () => ({
@@ -131,10 +174,13 @@ export const {
 	useLoginUserMutation,
 	useLogoutUserMutation,
 	useDepositAmountMutation,
+	useWithdrawAmountMutation,
 	useApproveDepositMutation,
+	useApproveWithdrawalMutation,
 	useChangeBalanceMutation,
 	useChangePlanMutation,
 	useChangeWalletMutation,
 	useGetPlansQuery,
 	useGetWalletsQuery,
+	useUpdateUserMutation,
 } = userApiSlice;

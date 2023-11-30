@@ -113,7 +113,7 @@ const Account = () => {
 									</div>
 									<div className="featured-title">
 										<h6>Last Withdrawal</h6>
-										<h6>$0.00</h6>
+										<h6>{user?.lastWitdrawal}</h6>
 									</div>
 								</div>
 							</div>
@@ -127,7 +127,7 @@ const Account = () => {
 									</div>
 									<div className="featured-title">
 										<h6>Withdraw Total</h6>
-										<h6>$0.00</h6>
+										<h6>{user?.totalWithdrawals}</h6>
 									</div>
 								</div>
 							</div>

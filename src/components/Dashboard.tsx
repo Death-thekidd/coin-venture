@@ -90,15 +90,11 @@ const DashBoard = () => {
 													</li>
 													<li>
 														{" "}
-														<Link to="/dashboard/referrals">
-															Your Referrals
-														</Link>
+														<Link to="/dashboard/referrals">Your Referrals</Link>
 													</li>
 													<li>
 														{" "}
-														<Link to="/dashboard/edit_account">
-															Edit Account
-														</Link>
+														<Link to="/dashboard/edit_account">Edit Account</Link>
 													</li>
 													<li>
 														{" "}
@@ -122,85 +118,6 @@ const DashBoard = () => {
 						</div>
 					</section>
 				</div>
-				<footer
-					className="footer white-bg pos-r o-hidden bg-contain"
-					data-bg-img={images.pattern_1}
-					style={{ marginTop: "100px" }}
-				>
-					<div className="round-p-animation"></div>
-					<div className="primary-footer">
-						<div className="container-fluid p-0">
-							<div className="row">
-								<div className="col-lg-4">
-									<div
-										className="ht-theme-info bg-contain bg-pos-r dark-bg text-white"
-										data-bg-img={images.bg_2}
-									>
-										<div className="footer-logo">
-											<a href="https://coinventure.live">
-												<img className="img-center" src={images.logo} alt="" />
-											</a>
-										</div>
-									</div>
-								</div>
-								<div className="col-lg-8 py-8">
-									<div className="row">
-										<div className="col-lg-12 col-md-12 footer-list">
-											<h4 className="title">We Accept</h4>
-											<div className="row">
-												<div className="col-sm-12">
-													<img
-														className="img-center"
-														src={images.perfectmoney}
-														alt=""
-													/>{" "}
-													<img
-														className="img-center"
-														src={images.payeer}
-														alt=""
-													/>{" "}
-													<img
-														className="img-center"
-														src={images.bitcoin_}
-														alt=""
-													/>{" "}
-													<img
-														className="img-center"
-														src={images.ethereum_}
-														alt=""
-													/>{" "}
-													<img
-														className="img-center"
-														src={images.litecoin_}
-														alt=""
-													/>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="secondary-footer">
-						<div className="container">
-							<div className="copyright">
-								<div className="row align-items-center">
-									<div className="col-md-6">
-										{" "}
-										<span>
-											Copyright 2019{" "}
-											<a href="https://coinventure.live">
-												Coin Venture Investments
-											</a>{" "}
-											| All Rights Reserved
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</footer>
 
 				<div className="scroll-top">
 					<a className="smoothscroll" href="#top">

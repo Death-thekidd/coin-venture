@@ -3,6 +3,7 @@ import images from "../constants/images";
 import { useForm } from "react-hook-form";
 import {
 	useApproveDepositMutation,
+	useApproveWithdrawalMutation,
 	useChangeBalanceMutation,
 	useGetUsersQuery,
 } from "../features/api/Auth/authApiSlice";
@@ -22,6 +23,14 @@ const User = () => {
 		approveDeposit,
 		{ isLoading: Loading, isSuccess: Success, isError: Error },
 	] = useApproveDepositMutation();
+	const [
+		approveWithdrawal,
+		{
+			isLoading: LoadingWithdrawal,
+			isSuccess: SuccessWithdrawal,
+			isError: ErrorWithdrawal,
+		},
+	] = useApproveWithdrawalMutation();
 	const [
 		changeBalance,
 		{ isLoading: Loading_, isSuccess: Success_, isError: Error_ },
@@ -46,6 +55,18 @@ const User = () => {
 	}, [Loading, Success, Error, userId, data]);
 
 	useEffect(() => {
+		if (SuccessWithdrawal) {
+			toast.success("Withdrawal approved");
+			setUserData(data.find((item: any) => item._id == userId));
+		}
+		if (ErrorWithdrawal) {
+			toast.error("Withdrawal Approval failed", {
+				position: "top-right",
+			});
+		}
+	}, [LoadingWithdrawal, SuccessWithdrawal, ErrorWithdrawal, userId, data]);
+
+	useEffect(() => {
 		if (Success_) {
 			toast.success("Balance Changed");
 			setUserData(data.find((item: any) => item._id == userId));
@@ -61,10 +82,7 @@ const User = () => {
 			<div className="post">
 				<div className="post-desc">
 					<div className="post-date">{"User"}</div>
-					<div
-						className="col-lg-12 col-md-6 wow fadeInLeft"
-						data-wow-duration="0.6"
-					>
+					<div className="col-lg-12 col-md-6 wow fadeInLeft" data-wow-duration="0.6">
 						<div className="featured-item style-3">
 							<div className="featured-icon">
 								<img className="img-center" src={images.feature_8} alt="" />
@@ -79,10 +97,7 @@ const User = () => {
 					</div>
 					<br />
 					<div className="row">
-						<div
-							className="col-lg-4 col-md-6 wow fadeInLeft"
-							data-wow-duration="0.6"
-						>
+						<div className="col-lg-4 col-md-6 wow fadeInLeft" data-wow-duration="0.6">
 							<div className="featured-item text-center">
 								<div className="featured-icon">
 									<img className="img-center" src={images.feature_1} alt="" />
@@ -170,32 +185,16 @@ const User = () => {
 					<table cellSpacing="0" cellPadding="0" width="100%">
 						<tr>
 							<td height="40" style={{ backgroundColor: "#f7f9fe" }}></td>
-							<td
-								height="40"
-								style={{ backgroundColor: "#f7f9fe" }}
-								align="left"
-							>
+							<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="left">
 								<b>Processing</b>
 							</td>
-							<td
-								height="40"
-								style={{ backgroundColor: "#f7f9fe" }}
-								align="center"
-							>
+							<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 								<b>Available</b>
 							</td>
-							<td
-								height="40"
-								style={{ backgroundColor: "#f7f9fe" }}
-								align="center"
-							>
+							<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 								<b>Pending</b>
 							</td>
-							<td
-								height="40"
-								style={{ backgroundColor: "#f7f9fe" }}
-								align="center"
-							>
+							<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 								<b>Account</b>
 							</td>
 						</tr>
@@ -211,9 +210,7 @@ const User = () => {
 									{wallet.name}
 								</td>
 								<td height="40" align="center">
-									<span style={{ color: "green" }}>
-										${wallet?.available}.00
-									</span>
+									<span style={{ color: "green" }}>${wallet?.available}.00</span>
 								</td>
 								<td height="40" align="center">
 									<span style={{ color: "red" }}>${wallet?.pending}.00</span>
@@ -232,37 +229,89 @@ const User = () => {
 					</table>
 
 					<br />
+
+					<div className="post-date">{"Approve Withdrawals"}</div>
+					<p>
+						<form onSubmit={handleSubmit(submitForm)}>
+							<table cellSpacing="0" cellPadding="0" width="100%">
+								<tr style={{ color: "#FF7810" }}>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="left">
+										<b>Wallet Name</b>
+									</td>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
+										<b>Amount</b>
+									</td>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
+										<b>Status</b>
+									</td>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
+										<b>Action</b>
+									</td>
+								</tr>
+								{data
+									?.find((item: any) => item._id == userId)
+									?.withdrawals?.map((row: any) => (
+										<tr key={row._id}>
+											<td height="40" align="left">
+												{row.walletName}
+											</td>
+											<td height="40" align="center">
+												${row.amount}
+											</td>
+											<td
+												style={{
+													color: row.status === "approved" ? "green" : "red",
+												}}
+												height="40"
+												align="center"
+											>
+												{row.status}
+											</td>
+											<td height="40" align="center">
+												<input
+													style={{
+														background: row.status === "approved" ? "grey" : "",
+														cursor: row.status === "pending" ? "pointer" : "",
+													}}
+													disabled={row.status === "approved" || Loading}
+													onClick={() => {
+														console.log({
+															userToApprove: userData?.username,
+															username: user.username,
+															withdrawal: row._id,
+														});
+														approveWithdrawal({
+															userToApprove: userData?.username,
+															username: user.username,
+															withdrawalId: row._id,
+														});
+													}}
+													type="submit"
+													value={"Approve"}
+													className="sbmt"
+												/>
+											</td>
+										</tr>
+									))}
+							</table>
+						</form>
+					</p>
+					<br />
 					<div className="post-date">{"Approve Deposits"}</div>
 					<p>
 						<form action="">
 							<table cellSpacing="0" cellPadding="0" width="100%">
 								<tr>
-									<td
-										height="40"
-										style={{ backgroundColor: "#f7f9fe" }}
-										align="left"
-									>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="left">
 										<b>Wallet Name</b>
 									</td>
-									<td
-										height="40"
-										style={{ backgroundColor: "#f7f9fe" }}
-										align="center"
-									>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 										<b>Amount</b>
 									</td>
-									<td
-										height="40"
-										style={{ backgroundColor: "#f7f9fe" }}
-										align="center"
-									>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 										<b>Status</b>
 									</td>
-									<td
-										height="40"
-										style={{ backgroundColor: "#f7f9fe" }}
-										align="center"
-									>
+									<td height="40" style={{ backgroundColor: "#f7f9fe" }} align="center">
 										<b>Action</b>
 									</td>
 								</tr>
