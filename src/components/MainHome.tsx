@@ -127,43 +127,45 @@ const MainHome = () => {
 						<div className="col-12 text-center">
 							<h2>investment plans</h2>
 						</div>
-						{plans.map((plan: any) => (
-							<div className="tab-content wow fadeIn">
-								<div role="tabpanel" className="tab-pane fade show active" id="yearly">
-									<div className="row justify-content-center">
-										<div className="col-md-6 col-lg-4 mb-30">
-											<div className="price-item text-center">
-												<div className="">
-													<h2>10%</h2>
-													<h4 className="mb-0">{plan?.interval}</h4>
-												</div>
-												<div className="price-content">
-													<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
-														<li>
-															<i className="zmdi zmdi-check mr-2"></i>
-															<span className="c-black">Profit {plan?.rate}%</span>
-														</li>
-														<li>
-															<i className="zmdi zmdi-check mr-2"></i>
-															<span className="c-black">
-																Min ${plan?.min} - ${plan?.max}
-															</span>
-														</li>
-														<li>
-															<i className="zmdi zmdi-check mr-2"></i>
-															<span className="c-black">Instant Payment</span>
-														</li>
-													</ul>
-													<Link to="/signup" className="btn btn-custom">
-														Invest Now
-													</Link>
+						<div style={{ display: "flex", flexDirection: "row" }}>
+							{plans.map((plan: any) => (
+								<div className="tab-content wow fadeIn">
+									<div role="tabpanel" className="tab-pane fade show active" id="yearly">
+										<div className="row justify-content-center">
+											<div className="col-md-6 col-lg-4 mb-30">
+												<div className="price-item text-center">
+													<div className="">
+														<h2>10%</h2>
+														<h4 className="mb-0">{plan?.interval}</h4>
+													</div>
+													<div className="price-content">
+														<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
+															<li>
+																<i className="zmdi zmdi-check mr-2"></i>
+																<span className="c-black">Profit {plan?.rate}%</span>
+															</li>
+															<li>
+																<i className="zmdi zmdi-check mr-2"></i>
+																<span className="c-black">
+																	Min ${plan?.min} - ${plan?.max}
+																</span>
+															</li>
+															<li>
+																<i className="zmdi zmdi-check mr-2"></i>
+																<span className="c-black">Instant Payment</span>
+															</li>
+														</ul>
+														<Link to="/signup" className="btn btn-custom">
+															Invest Now
+														</Link>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 				</div>
 			</section>
