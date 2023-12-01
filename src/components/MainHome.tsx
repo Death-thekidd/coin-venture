@@ -134,7 +134,7 @@ const MainHome = () => {
 										<div className="row justify-content-center">
 											<div
 												className="price-item"
-												style={{ flex: "0 0 calc(33.333% - 20px)", margin: "10px" }}
+												style={{ flex: "0 0 calc(33.333% - 20px)" }}
 											>
 												<div className="text-center">
 													<div className="">
