@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import images from "../constants/images";
 import "./dashboard.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
