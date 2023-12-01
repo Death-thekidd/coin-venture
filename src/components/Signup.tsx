@@ -59,10 +59,7 @@ const Signup = () => {
 										<div className="form-wrap bg-white">
 											<h4 className="btm-sep pb-3 mb-5">Register</h4>
 
-											<form
-												onSubmit={handleSubmit(submitForm)}
-												className="form"
-											>
+											<form onSubmit={handleSubmit(submitForm)} className="form">
 												<div className="row">
 													/;
 													<div className="col-12">
@@ -119,7 +116,7 @@ const Signup = () => {
 																data-validate-notice="PXXXXXXX"
 																className="form-control"
 																placeholder="Your Payeer Account"
-																{...register("payeer", { required: true })}
+																{...register("payeer")}
 															/>
 														</div>
 													</div>
@@ -133,7 +130,7 @@ const Signup = () => {
 																data-validate-notice="Bitcoin Address"
 																className="form-control"
 																placeholder="Your Bitcoin Account"
-																{...register("bitcoin", { required: true })}
+																{...register("bitcoin")}
 															/>
 														</div>
 													</div>
@@ -147,7 +144,7 @@ const Signup = () => {
 																data-validate-notice="Litecoin Address"
 																className="form-control"
 																placeholder="Your Litecoin Account"
-																{...register("litecoin", { required: true })}
+																{...register("litecoin")}
 															/>
 														</div>
 													</div>
@@ -161,7 +158,7 @@ const Signup = () => {
 																data-validate-notice="Ethereum Address"
 																className="form-control"
 																placeholder="Your Ethereum Account"
-																{...register("ethereum", { required: true })}
+																{...register("ethereum")}
 															/>
 														</div>
 													</div>
@@ -210,8 +207,7 @@ const Signup = () => {
 														</div>
 													</div>
 													<div className="col-12">
-														<input type="checkbox" name="agree" value="1" /> I
-														agree with{" "}
+														<input type="checkbox" name="agree" value="1" /> I agree with{" "}
 														<a href="?a=rules">Terms and conditions</a>
 														<input
 															type="submit"
