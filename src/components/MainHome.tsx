@@ -1,9 +1,15 @@
 import { useEffect } from "react";
 import images from "../constants/images";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+const selector = (state: any) => state.user;
 
 const MainHome = () => {
 	useEffect(() => {}, []);
+	const {
+		deposit: { plans },
+	} = useSelector(selector);
 	return (
 		<>
 			<section className="breadcrumb-section">
@@ -19,15 +25,11 @@ const MainHome = () => {
 										COIN VENTURE LIMITED RELIABLE INVESTMENT RETURNS{" "}
 									</h2>
 									<p className="c-white">
-										COIN VENTURE helps generate strong investment returns and
-										meets long-term goals, We are a leading global investment
-										solutions partner, dedicated to improving peoples financial
-										security.
+										COIN VENTURE helps generate strong investment returns and meets
+										long-term goals, We are a leading global investment solutions partner,
+										dedicated to improving peoples financial security.
 									</p>
-									<Link
-										to="/about"
-										className="btn btn-lg btn-custom btn-light mt-4"
-									>
+									<Link to="/about" className="btn btn-lg btn-custom btn-light mt-4">
 										Read About Us
 									</Link>
 								</div>
@@ -49,8 +51,8 @@ const MainHome = () => {
 					<div className="cta-box bg-white wow fadeInUp" data-wow-delay="0.2s">
 						<h3>Start growing with COIN VENTURE today!</h3>
 						<p className="mb-30 mx-auto">
-							The ability to efficiently implement trades around the clock,
-							through our internal trading desk.
+							The ability to efficiently implement trades around the clock, through our
+							internal trading desk.
 						</p>
 						<Link to="/signup" className="btn btn-lg btn-custom">
 							Join Now <i className="zmdi zmdi-long-arrow-right ml-2"></i>
@@ -79,10 +81,7 @@ const MainHome = () => {
 								<div className="proj-img">
 									<img src={images.port1} alt="project" />
 									<div className="proj-overlay">
-										<h5>
-											Sourcing key investment ideas designed to deliver real
-											value
-										</h5>
+										<h5>Sourcing key investment ideas designed to deliver real value</h5>
 										<a href={images.port1} className="pop-btn">
 											<i className="zmdi zmdi-zoom-in"></i>
 										</a>
@@ -109,8 +108,8 @@ const MainHome = () => {
 									<img src={images.port3} alt="project" />
 									<div className="proj-overlay">
 										<h5>
-											Research & insights From our global team of researchers
-											and strategists
+											Research & insights From our global team of researchers and
+											strategists
 										</h5>
 										<a href={images.port3} className="pop-btn">
 											<i className="zmdi zmdi-zoom-in"></i>
@@ -128,98 +127,43 @@ const MainHome = () => {
 						<div className="col-12 text-center">
 							<h2>investment plans</h2>
 						</div>
-
-						<div className="tab-content wow fadeIn">
-							<div
-								role="tabpanel"
-								className="tab-pane fade show active"
-								id="yearly"
-							>
-								<div className="row justify-content-center">
-									<div className="col-md-6 col-lg-4 mb-30">
-										<div className="price-item text-center">
-											<div className="">
-												<h2>10%</h2>
-												<h4 className="mb-0">DAILY FOREVER</h4>
-											</div>
-											<div className="price-content">
-												<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Daily Profit 10%</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Min $5 - $500</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Instant Payment</span>
-													</li>
-												</ul>
-												<Link to="/signup" className="btn btn-custom">
-													Invest Now
-												</Link>
-											</div>
-										</div>
-									</div>
-									<div className="col-md-6 col-lg-4 mb-30">
-										<div className="price-item text-center">
-											<div className="">
-												<h2>12%</h2>
-												<h4 className="mb-0">DAILY FOREVER</h4>
-											</div>
-											<div className="price-content">
-												<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Daily Profit 12%</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Min $500 - $1000</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Instant Payment</span>
-													</li>
-												</ul>
-												<Link to="/signup" className="btn btn-custom">
-													Invest Now
-												</Link>
-											</div>
-										</div>
-									</div>
-									<div className="col-md-6 col-lg-4 mb-30">
-										<div className="price-item text-center">
-											<div className="">
-												<h2>15%</h2>
-												<h4 className="mb-0">DAILY FOREVER</h4>
-											</div>
-											<div className="price-content">
-												<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Daily Profit 15%</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Min $1000 - $100000</span>
-													</li>
-													<li>
-														<i className="zmdi zmdi-check mr-2"></i>
-														<span className="c-black">Instant Payment</span>
-													</li>
-												</ul>
-												<Link to="/signup" className="btn btn-custom">
-													Invest Now
-												</Link>
+						{plans.map((plan: any) => (
+							<div className="tab-content wow fadeIn">
+								<div role="tabpanel" className="tab-pane fade show active" id="yearly">
+									<div className="row justify-content-center">
+										<div className="col-md-6 col-lg-4 mb-30">
+											<div className="price-item text-center">
+												<div className="">
+													<h2>10%</h2>
+													<h4 className="mb-0">{plan?.interval}</h4>
+												</div>
+												<div className="price-content">
+													<ul className="border-bottom mb-30 mt-md-4 pb-3 text-left">
+														<li>
+															<i className="zmdi zmdi-check mr-2"></i>
+															<span className="c-black">Profit {plan?.rate}%</span>
+														</li>
+														<li>
+															<i className="zmdi zmdi-check mr-2"></i>
+															<span className="c-black">
+																Min ${plan?.min} - ${plan?.max}
+															</span>
+														</li>
+														<li>
+															<i className="zmdi zmdi-check mr-2"></i>
+															<span className="c-black">Instant Payment</span>
+														</li>
+													</ul>
+													<Link to="/signup" className="btn btn-custom">
+														Invest Now
+													</Link>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						))}
 					</div>
 				</div>
 			</section>
@@ -228,9 +172,7 @@ const MainHome = () => {
 					<div className="row">
 						<div className="col-12">
 							<div className="section-title">
-								<h3 className="top-c-sep  c-white">
-									Some of Company Real Facts
-								</h3>
+								<h3 className="top-c-sep  c-white">Some of Company Real Facts</h3>
 							</div>
 						</div>
 					</div>
@@ -445,7 +387,7 @@ const MainHome = () => {
 			<section className="cta-section position-relative">
 				<div className="container">
 					<div className="cta-box bg-white wow fadeInUp" data-wow-delay="0.2s">
-						<h3>REFERRAL COMMISSIONS 5%</h3>
+						<h3>REFERRAL COMMISSIONS 10%</h3>
 					</div>
 				</div>
 			</section>

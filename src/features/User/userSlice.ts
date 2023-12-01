@@ -93,6 +93,7 @@ const initialState = {
 			{
 				id: "starter",
 				name: "STARTING PLAN",
+				interval: "24 HOURS",
 				rate: "7",
 				min: "50",
 				max: "499",
@@ -100,6 +101,7 @@ const initialState = {
 			{
 				id: "premium",
 				name: "PREMIUM PLAN",
+				interval: "10 HOURS",
 				rate: "10",
 				min: "500",
 				max: "999",
@@ -107,6 +109,7 @@ const initialState = {
 			{
 				id: "pro",
 				name: "PROFESSIONAL PLAN",
+				interval: "2 DAYS",
 				rate: "15",
 				min: "1000",
 				max: "5000",
@@ -114,6 +117,7 @@ const initialState = {
 			{
 				id: "vip",
 				name: "VIP PLAN",
+				interval: "3 DAYS",
 				rate: "20",
 				min: "4999",
 				max: "Unlimited",
@@ -121,6 +125,7 @@ const initialState = {
 			{
 				id: "blackd",
 				name: "BLACK DIAMOND PLAN",
+				interval: "30 DAYS",
 				rate: "50",
 				min: "5000",
 				max: "100,000",
