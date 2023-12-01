@@ -127,7 +127,7 @@ const MainHome = () => {
 						<div className="col-12 text-center">
 							<h2>investment plans</h2>
 						</div>
-						<div style={{ display: "flex", flexWrap: "wrap" }}>
+						<div style={{ display: "flex" }}>
 							{plans.map((plan: any) => (
 								<div className="tab-content wow fadeIn">
 									<div role="tabpanel" className="tab-pane fade show active" id="yearly">
