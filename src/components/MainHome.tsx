@@ -132,11 +132,8 @@ const MainHome = () => {
 								<div className="tab-content wow fadeIn">
 									<div role="tabpanel" className="tab-pane fade show active" id="yearly">
 										<div className="row justify-content-center">
-											<div
-												className="price-item"
-												style={{ flex: "0 0 calc(33.333% - 20px)" }}
-											>
-												<div className="text-center">
+											<div style={{ flex: "0 0 calc(33.333% - 20px)", margin: "10px" }}>
+												<div className="price-item text-center">
 													<div className="">
 														<h2>{plan?.rate}%</h2>
 														<h4 className="mb-0">{plan?.interval}</h4>
