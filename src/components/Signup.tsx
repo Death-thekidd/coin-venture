@@ -169,7 +169,7 @@ const Signup = () => {
 																type="text"
 																className="form-control"
 																placeholder="Your Usdt Account"
-																{...register("usdt_trc", { required: true })}
+																{...register("usdt_trc")}
 															/>
 														</div>
 													</div>
