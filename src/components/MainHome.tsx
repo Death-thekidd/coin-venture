@@ -135,7 +135,7 @@ const MainHome = () => {
 											<div style={{ flex: "0 0 calc(33.333% - 20px)", margin: "10px" }}>
 												<div className="price-item text-center">
 													<div className="">
-														<h2>10%</h2>
+														<h2>{plan?.rate}%</h2>
 														<h4 className="mb-0">{plan?.interval}</h4>
 													</div>
 													<div className="price-content">
