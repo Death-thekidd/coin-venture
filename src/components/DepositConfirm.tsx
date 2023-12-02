@@ -15,6 +15,7 @@ const DepositConfirm = () => {
 		useDepositAmountMutation();
 	const submitForm = () => {
 		depositAmount({
+			plan: deposit?.selectedPlan?.id,
 			username: user?.username,
 			amount: deposit?.amount,
 			walletName: deposit?.selectedMethod?.name,
