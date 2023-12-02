@@ -5,10 +5,8 @@ import { useLoginUserMutation } from "../../features/api/Auth/authApiSlice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-const selector = (state: any) => state.user;
-
 const Login = () => {
-	const { user } = useSelector(selector);
+	const userId = localStorage.getItem("coin_venture_uid");
 	const { register, handleSubmit } = useForm();
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -20,10 +18,10 @@ const Login = () => {
 		loginUser(data);
 	};
 	useEffect(() => {
-		if (user) {
+		if (userId) {
 			navigate("/dashboard/account");
 		}
-	}, [user, navigate]);
+	}, [userId, navigate]);
 	useEffect(() => {
 		if (isSuccess) {
 			toast.success("Sign in succesful");
