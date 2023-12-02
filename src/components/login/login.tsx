@@ -28,7 +28,7 @@ const Login = () => {
 		if (isSuccess) {
 			toast.success("Sign in succesful");
 			console.log(data);
-			localStorage.setItem("coin_venture_uid", data.id);
+			localStorage.setItem("coin_venture_uid", data?.id);
 			setTimeout(() => {
 				if (data.isAdmin) navigate("/dashboard/users");
 				else navigate(from);
@@ -37,7 +37,7 @@ const Login = () => {
 		if (isError) {
 			console.log(error);
 			if ((error as any)?.data) {
-				toast.error((error as any).data.message, { position: "top-right" });
+				toast.error((error as any)?.data?.message, { position: "top-right" });
 			} else {
 				toast.error("Login Error", {
 					position: "top-right",
@@ -58,10 +58,7 @@ const Login = () => {
 										<div className="form-wrap bg-white">
 											<h4 className="btm-sep pb-3 mb-5">Login</h4>
 
-											<form
-												className="form"
-												onSubmit={handleSubmit(submitForm)}
-											>
+											<form className="form" onSubmit={handleSubmit(submitForm)}>
 												<div className="row">
 													<div className="col-12">
 														<div className="form-group position-relative">
