@@ -63,6 +63,7 @@ const DashBoard = () => {
 															onClick={() => {
 																logoutUser("");
 																dispatch(setUser(null));
+																localStorage.removeItem("coin_venture_uid");
 															}}
 														>
 															Logout
