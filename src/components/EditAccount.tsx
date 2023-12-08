@@ -5,12 +5,12 @@ import {
 	useGetUserQuery,
 	useUpdateUserMutation,
 } from "../features/api/Auth/authApiSlice";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 const selectState = (state: any) => state.user;
 
 const EditAccount = () => {
-	const { handleSubmit, setValue } = useForm();
+	const { handleSubmit, setValue, register, control } = useForm();
 	const [userData, setUserData] = useState({
 		wallets: [], // Array of wallet objects
 		// Other user data fields
@@ -155,7 +155,7 @@ const EditAccount = () => {
 									>
 										<input
 											type="password"
-											name="password"
+											{...register("password", { required: true })}
 											value=""
 											className="form-control"
 										/>
@@ -181,36 +181,39 @@ const EditAccount = () => {
 										<input type="password" name="password2" className="form-control" />
 									</td>
 								</tr>
-								{user?.wallets.map((wallet: any) => (
-									<>
-										<tr>
-											<td
-												width="25%"
-												height="40"
-												style={{ paddingTop: "10px", paddingBottom: "10px" }}
-											>
-												{wallet?.name} ACC No:
-											</td>
-											<td
-												style={{
-													paddingLeft: "20px",
-													paddingTop: "10px",
-													paddingBottom: "10px",
-												}}
-												width="45%"
-												height="40"
-											>
-												<input
-													type="text"
-													className="form-control"
-													value={wallet?.address}
-													data-validate="regexp"
-													data-validate-regexp="^U\d{5,}$"
-													data-validate-notice="UXXXXXXX"
-												/>
-											</td>
-										</tr>
-									</>
+								{userData?.wallets?.map((wallet: any, index: any) => (
+									<tr key={index}>
+										<Controller
+											name={`wallets[${index}].address`}
+											control={control}
+											defaultValue={wallet.address}
+											render={({ field }) => (
+												<>
+													<td
+														width="25%"
+														height="40"
+														style={{
+															paddingTop: "10px",
+															paddingBottom: "10px",
+														}}
+													>
+														{wallet?.name} ACC No:
+													</td>
+													<td
+														style={{
+															paddingLeft: "20px",
+															paddingTop: "10px",
+															paddingBottom: "10px",
+														}}
+														width="45%"
+														height="40"
+													>
+														<input className="form-control" type="text" {...field} />
+													</td>
+												</>
+											)}
+										/>
+									</tr>
 								))}
 								<tr>
 									<td
