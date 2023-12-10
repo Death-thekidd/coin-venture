@@ -30,7 +30,7 @@ const Account = () => {
 										onClick={async () => {
 											try {
 												await navigator.clipboard.writeText(
-													`https://coinventure.live/modal/register/${user?.referralCode}`
+													`https://coinventure.live/signup/${user?.referralCode}`
 												);
 												toast.success("Link copied to clipboard");
 											} catch (err) {
@@ -38,7 +38,7 @@ const Account = () => {
 											}
 										}}
 									>
-										{`Referral Link: https://coinventure.live/register/${user?.referralCode}`}
+										{`Referral Link: https://coinventure.live/signup/${user?.referralCode}`}
 									</p>
 								</div>
 							</div>
