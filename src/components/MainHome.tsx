@@ -54,7 +54,7 @@ const MainHome = () => {
 							The ability to efficiently implement trades around the clock, through our
 							internal trading desk.
 						</p>
-						<Link to="/signup" className="btn btn-lg btn-custom">
+						<Link to="/signup/0" className="btn btn-lg btn-custom">
 							Join Now <i className="zmdi zmdi-long-arrow-right ml-2"></i>
 						</Link>
 					</div>
@@ -155,7 +155,7 @@ const MainHome = () => {
 																<span className="c-black">Instant Payment</span>
 															</li>
 														</ul>
-														<Link to="/signup" className="btn btn-custom">
+														<Link to="/signup/0" className="btn btn-custom">
 															Invest Now
 														</Link>
 													</div>

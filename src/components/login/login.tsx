@@ -99,7 +99,7 @@ const Login = () => {
 										<div className="content text-center">
 											<div className="border-bottom pb-5 mb-5">
 												<h3 className="c-black">First time here?</h3>
-												<Link to="/signup" className="btn Sibtn-custom">
+												<Link to="/signup/0" className="btn Sibtn-custom">
 													Sign up
 												</Link>
 											</div>

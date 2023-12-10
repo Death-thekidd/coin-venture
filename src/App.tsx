@@ -33,7 +33,7 @@ function App() {
 						<Route path="/faq" element={<Faq />}></Route>
 						<Route path="/rules" element={<Rules />}></Route>
 						<Route path="/login" element={<Login />}></Route>
-						<Route path="/signup" element={<Signup />}></Route>
+						<Route path="/signup/:username" element={<Signup />}></Route>
 						<Route path="/dashboard" element={<DashBoard />}>
 							<Route path="account" element={<Account />}></Route>
 							<Route path="deposit" element={<Deposit />}></Route>

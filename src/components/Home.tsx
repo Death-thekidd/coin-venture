@@ -76,7 +76,7 @@ const Home = () => {
 									</li> */}
 									{!user && (
 										<li className="nav-item">
-											<Link className="nav-link" to="/signup">
+											<Link className="nav-link" to="/signup/0">
 												Signup
 											</Link>
 										</li>
@@ -137,7 +137,7 @@ const Home = () => {
 									{!user && (
 										<>
 											<Link to="/login">Log In</Link>
-											<Link to="/signup">Sign Up</Link>
+											<Link to="/signup/0">Sign Up</Link>
 										</>
 									)}
 								</div>
