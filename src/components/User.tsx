@@ -331,7 +331,7 @@ const User = () => {
 														background: row.status === "cancelled " ? "grey" : "",
 														cursor: row.status === "pending" ? "pointer" : "",
 													}}
-													disabled={row.status === "cancelled" || Loading}
+													disabled={row.status === "cancelled" || LoadingWithdrawal}
 													onClick={() => {
 														console.log({
 															userToApprove: userData?.username,
@@ -353,7 +353,7 @@ const User = () => {
 														background: row.status === "approved" ? "grey" : "",
 														cursor: row.status === "pending" ? "pointer" : "",
 													}}
-													disabled={row.status === "approved" || Loading}
+													disabled={row.status === "approved" || LoadingWithdrawal_}
 													onClick={() => {
 														console.log({
 															userToApprove: userData?.username,
