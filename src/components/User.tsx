@@ -3,7 +3,7 @@ import images from "../constants/images";
 import { Controller, useForm } from "react-hook-form";
 import {
 	useApproveDepositMutation,
-	useApproveWithdrawalMutation,
+	useCancelWithdrawalMutation,
 	useChangeBalanceMutation,
 	useGetUsersQuery,
 	useUpdateUserMutation,
@@ -30,13 +30,13 @@ const User = () => {
 		{ isLoading: Loading, isSuccess: Success, isError: Error },
 	] = useApproveDepositMutation();
 	const [
-		approveWithdrawal,
+		cancelWithdrawal,
 		{
 			isLoading: LoadingWithdrawal,
 			isSuccess: SuccessWithdrawal,
 			isError: ErrorWithdrawal,
 		},
-	] = useApproveWithdrawalMutation();
+	] = useCancelWithdrawalMutation();
 	const [
 		changeBalance,
 		{ isLoading: Loading_, isSuccess: Success_, isError: Error_ },
@@ -318,14 +318,14 @@ const User = () => {
 															username: user.username,
 															withdrawal: row._id,
 														});
-														approveWithdrawal({
+														cancelWithdrawal({
 															userToApprove: userData?.username,
 															username: user.username,
 															withdrawalId: row._id,
 														});
 													}}
 													type="submit"
-													value={"Approve"}
+													value={"Cancel"}
 													className="sbmt"
 												/>
 											</td>
