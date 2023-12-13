@@ -334,7 +334,7 @@ const User = () => {
 													disabled={row.status === "cancelled" || LoadingWithdrawal}
 													onClick={() => {
 														console.log({
-															userToApprove: userData?.username,
+															userToCancel: userData?.username,
 															username: user.username,
 															withdrawal: row._id,
 														});
