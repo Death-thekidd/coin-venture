@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import {
 	useApproveDepositMutation,
 	useCancelWithdrawalMutation,
+	useApproveWithdrawalMutation,
 	useChangeBalanceMutation,
 	useGetUsersQuery,
 	useUpdateUserMutation,
@@ -37,6 +38,14 @@ const User = () => {
 			isError: ErrorWithdrawal,
 		},
 	] = useCancelWithdrawalMutation();
+	const [
+		approveWithdrawal,
+		{
+			isLoading: LoadingWithdrawal_,
+			isSuccess: SuccessWithdrawal_,
+			isError: ErrorWithdrawal_,
+		},
+	] = useApproveWithdrawalMutation();
 	const [
 		changeBalance,
 		{ isLoading: Loading_, isSuccess: Success_, isError: Error_ },
@@ -87,6 +96,17 @@ const User = () => {
 			});
 		}
 	}, [LoadingWithdrawal, SuccessWithdrawal, ErrorWithdrawal, userId, data]);
+	useEffect(() => {
+		if (SuccessWithdrawal_) {
+			toast.success("Withdrawal Approved");
+			setUserData(data.find((item: any) => item._id == userId));
+		}
+		if (ErrorWithdrawal) {
+			toast.error("Withdrawal Approval failed", {
+				position: "top-right",
+			});
+		}
+	}, [LoadingWithdrawal_, SuccessWithdrawal_, ErrorWithdrawal_, userId, data]);
 
 	useEffect(() => {
 		if (Success_) {
@@ -268,7 +288,7 @@ const User = () => {
 
 					<br />
 
-					<div className="post-date">{"Cancel Withdrawals"}</div>
+					<div className="post-date">{"Withdrawals"}</div>
 					<p>
 						<form onSubmit={handleSubmit(submitForm)}>
 							<table cellSpacing="0" cellPadding="0" width="100%">
@@ -308,6 +328,28 @@ const User = () => {
 											<td height="40" align="center">
 												<input
 													style={{
+														background: row.status === "cancelled " ? "grey" : "",
+														cursor: row.status === "pending" ? "pointer" : "",
+													}}
+													disabled={row.status === "cancelled" || Loading}
+													onClick={() => {
+														console.log({
+															userToApprove: userData?.username,
+															username: user.username,
+															withdrawal: row._id,
+														});
+														cancelWithdrawal({
+															userToCancel: userData?.username,
+															username: user.username,
+															withdrawalId: row._id,
+														});
+													}}
+													type="submit"
+													value={"Cancel"}
+													className="sbmt"
+												/>
+												<input
+													style={{
 														background: row.status === "approved" ? "grey" : "",
 														cursor: row.status === "pending" ? "pointer" : "",
 													}}
@@ -318,14 +360,14 @@ const User = () => {
 															username: user.username,
 															withdrawal: row._id,
 														});
-														cancelWithdrawal({
+														approveWithdrawal({
 															userToApprove: userData?.username,
 															username: user.username,
 															withdrawalId: row._id,
 														});
 													}}
 													type="submit"
-													value={"Cancel"}
+													value={"Approve"}
 													className="sbmt"
 												/>
 											</td>

@@ -108,6 +108,17 @@ export const userApiSlice = createApi({
 			}),
 			invalidatesTags: ["Users"],
 		}),
+		approveWithdrawal: builder.mutation({
+			query: (payload) => ({
+				url: "/api/test/approve-withdrawal",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Users"],
+		}),
 		changeBalance: builder.mutation({
 			query: (payload) => ({
 				url: "/api/test/change-balance",
@@ -177,6 +188,7 @@ export const {
 	useWithdrawAmountMutation,
 	useApproveDepositMutation,
 	useCancelWithdrawalMutation,
+	useApproveWithdrawalMutation,
 	useChangeBalanceMutation,
 	useChangePlanMutation,
 	useChangeWalletMutation,
