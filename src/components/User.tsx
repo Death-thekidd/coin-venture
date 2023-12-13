@@ -461,7 +461,7 @@ const User = () => {
 											width="45%"
 											height="40"
 										>
-											{user?.username}
+											{userData?.username}
 										</td>
 									</tr>
 									<tr>
@@ -504,7 +504,7 @@ const User = () => {
 											<input
 												type="text"
 												name="fullname"
-												value={user?.fullname}
+												value={userData?.fullname}
 												className="form-control"
 											/>
 										</td>
@@ -609,7 +609,7 @@ const User = () => {
 											<input
 												type="text"
 												name="email"
-												value={user?.email}
+												value={userData?.email}
 												disabled
 												className="form-control"
 											/>
