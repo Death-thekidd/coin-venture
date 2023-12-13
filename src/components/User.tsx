@@ -78,11 +78,11 @@ const User = () => {
 
 	useEffect(() => {
 		if (SuccessWithdrawal) {
-			toast.success("Withdrawal approved");
+			toast.success("Withdrawal cancelled");
 			setUserData(data.find((item: any) => item._id == userId));
 		}
 		if (ErrorWithdrawal) {
-			toast.error("Withdrawal Approval failed", {
+			toast.error("Withdrawal Cancel failed", {
 				position: "top-right",
 			});
 		}
@@ -268,7 +268,7 @@ const User = () => {
 
 					<br />
 
-					<div className="post-date">{"Approve Withdrawals"}</div>
+					<div className="post-date">{"Cancel Withdrawals"}</div>
 					<p>
 						<form onSubmit={handleSubmit(submitForm)}>
 							<table cellSpacing="0" cellPadding="0" width="100%">
@@ -439,207 +439,204 @@ const User = () => {
 					</p>
 					<br />
 					<div className="post-date">{"Edit Account"}</div>
-					<div className="post-desc">
-						<div className="post-date">Edit Account</div>
-						<p>
-							<form onSubmit={handleSubmitEdit(onSubmit)}>
-								<table cellSpacing="0" cellPadding="0" width="75%">
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											Account Name:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											{userData?.username}
-										</td>
-									</tr>
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											Registration date:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											Dec-4-2019 01:07:07 PM
-										</td>
-									</tr>
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											Full Name:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											<input
-												type="text"
-												name="fullname"
-												value={userData?.fullname}
-												className="form-control"
-											/>
-										</td>
-									</tr>
+					<p>
+						<form onSubmit={handleSubmitEdit(onSubmit)}>
+							<table cellSpacing="0" cellPadding="0" width="75%">
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										Account Name:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										{userData?.username}
+									</td>
+								</tr>
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										Registration date:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										Dec-4-2019 01:07:07 PM
+									</td>
+								</tr>
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										Full Name:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										<input
+											type="text"
+											name="fullname"
+											value={userData?.fullname}
+											className="form-control"
+										/>
+									</td>
+								</tr>
 
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											New Password:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											<input
-												type="password"
-												{...registerEdit("password", { required: true })}
-												value=""
-												className="form-control"
-											/>
-										</td>
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										New Password:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										<input
+											type="password"
+											{...registerEdit("password", { required: true })}
+											value=""
+											className="form-control"
+										/>
+									</td>
+								</tr>
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										Retype Password:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										<input type="password" name="password2" className="form-control" />
+									</td>
+								</tr>
+								{userData?.wallets?.map((wallet: any, index: any) => (
+									<tr key={index}>
+										<Controller
+											name={`wallets[${index}].address`}
+											control={controlEdit}
+											defaultValue={wallet.address}
+											render={({ field }) => (
+												<>
+													<td
+														width="25%"
+														height="40"
+														style={{
+															paddingTop: "10px",
+															paddingBottom: "10px",
+														}}
+													>
+														{wallet?.name} ACC No:
+													</td>
+													<td
+														style={{
+															paddingLeft: "20px",
+															paddingTop: "10px",
+															paddingBottom: "10px",
+														}}
+														width="45%"
+														height="40"
+													>
+														<input className="form-control" type="text" {...field} />
+													</td>
+												</>
+											)}
+										/>
 									</tr>
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											Retype Password:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											<input type="password" name="password2" className="form-control" />
-										</td>
-									</tr>
-									{userData?.wallets?.map((wallet: any, index: any) => (
-										<tr key={index}>
-											<Controller
-												name={`wallets[${index}].address`}
-												control={controlEdit}
-												defaultValue={wallet.address}
-												render={({ field }) => (
-													<>
-														<td
-															width="25%"
-															height="40"
-															style={{
-																paddingTop: "10px",
-																paddingBottom: "10px",
-															}}
-														>
-															{wallet?.name} ACC No:
-														</td>
-														<td
-															style={{
-																paddingLeft: "20px",
-																paddingTop: "10px",
-																paddingBottom: "10px",
-															}}
-															width="45%"
-															height="40"
-														>
-															<input className="form-control" type="text" {...field} />
-														</td>
-													</>
-												)}
-											/>
-										</tr>
-									))}
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											E-mail address:
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											<input
-												type="text"
-												name="email"
-												value={userData?.email}
-												disabled
-												className="form-control"
-											/>
-										</td>
-									</tr>
+								))}
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										E-mail address:
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										<input
+											type="text"
+											name="email"
+											value={userData?.email}
+											disabled
+											className="form-control"
+										/>
+									</td>
+								</tr>
 
-									<tr>
-										<td
-											width="25%"
-											height="40"
-											style={{ paddingTop: "10px", paddingBottom: "10px" }}
-										>
-											&nbsp;
-										</td>
-										<td
-											style={{
-												paddingLeft: "20px",
-												paddingTop: "10px",
-												paddingBottom: "10px",
-											}}
-											width="45%"
-											height="40"
-										>
-											<input type="submit" value="Change Account data" className="sbmt" />
-										</td>
-									</tr>
-								</table>
-							</form>
-						</p>
-					</div>
+								<tr>
+									<td
+										width="25%"
+										height="40"
+										style={{ paddingTop: "10px", paddingBottom: "10px" }}
+									>
+										&nbsp;
+									</td>
+									<td
+										style={{
+											paddingLeft: "20px",
+											paddingTop: "10px",
+											paddingBottom: "10px",
+										}}
+										width="45%"
+										height="40"
+									>
+										<input type="submit" value="Change Account data" className="sbmt" />
+									</td>
+								</tr>
+							</table>
+						</form>
+					</p>
 				</div>
 			</div>
 		</div>
