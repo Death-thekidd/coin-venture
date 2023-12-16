@@ -101,7 +101,7 @@ const User = () => {
 			toast.success("Withdrawal Approved");
 			setUserData(data.find((item: any) => item._id == userId));
 		}
-		if (ErrorWithdrawal) {
+		if (ErrorWithdrawal_) {
 			toast.error("Withdrawal Approval failed", {
 				position: "top-right",
 			});
@@ -353,7 +353,11 @@ const User = () => {
 														background: row.status === "approved" ? "grey" : "",
 														cursor: row.status === "pending" ? "pointer" : "",
 													}}
-													disabled={row.status === "approved" || LoadingWithdrawal_}
+													disabled={
+														row.status === "approved" ||
+														row.status === "cancelled" ||
+														LoadingWithdrawal_
+													}
 													onClick={() => {
 														console.log({
 															userToApprove: userData?.username,
