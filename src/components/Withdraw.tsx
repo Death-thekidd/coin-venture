@@ -147,6 +147,7 @@ const Withdraw = () => {
 										<td align="right" height="40">
 											<input
 												type="number"
+												step={"any"}
 												className="form-control"
 												style={{ textAlign: "right" }}
 												{...register("amount", { required: true })}
