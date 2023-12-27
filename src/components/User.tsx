@@ -219,7 +219,12 @@ const User = () => {
 								</div>
 								<div className="featured-title">
 									<h6>Last Withdrawal</h6>
-									<h6>${}</h6>
+									<h6>
+										$
+										{userData?.withdrawals?.length > 0
+											? userData?.withdrawals[userData.withdrawals.length - 1]?.amount
+											: 0}
+									</h6>
 								</div>
 							</div>
 						</div>
