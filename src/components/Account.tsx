@@ -113,7 +113,7 @@ const Account = () => {
 									</div>
 									<div className="featured-title">
 										<h6>Last Withdrawal</h6>
-										<h6>{user?.lastWitdrawal}</h6>
+										<h6>${user?.withdrawals[-1]?.amount}</h6>
 									</div>
 								</div>
 							</div>
@@ -127,7 +127,13 @@ const Account = () => {
 									</div>
 									<div className="featured-title">
 										<h6>Withdraw Total</h6>
-										<h6>{user?.totalWithdrawals}</h6>
+										<h6>
+											$
+											{user?.withdrawals?.reduce(
+												(acc: any, withdrawal: any) => acc + withdrawal.amount,
+												0
+											)}
+										</h6>
 									</div>
 								</div>
 							</div>
