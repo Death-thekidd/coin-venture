@@ -219,7 +219,7 @@ const User = () => {
 								</div>
 								<div className="featured-title">
 									<h6>Last Withdrawal</h6>
-									<h6>${userData?.withdrawals}</h6>
+									<h6>${}</h6>
 								</div>
 							</div>
 						</div>
