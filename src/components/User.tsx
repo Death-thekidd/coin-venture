@@ -205,7 +205,7 @@ const User = () => {
 								</div>
 								<div className="featured-title">
 									<h6>Last Deposit</h6>
-									<h6>${userData.activeDeposit}</h6>
+									<h6>${userData?.activeDeposit}</h6>
 								</div>
 							</div>
 						</div>
@@ -219,7 +219,7 @@ const User = () => {
 								</div>
 								<div className="featured-title">
 									<h6>Last Withdrawal</h6>
-									<h6>$0.00</h6>
+									<h6>${userData?.withdrawals[-1]?.amount}</h6>
 								</div>
 							</div>
 						</div>
@@ -233,7 +233,13 @@ const User = () => {
 								</div>
 								<div className="featured-title">
 									<h6>Withdraw Total</h6>
-									<h6>$0.00</h6>
+									<h6>
+										$
+										{userData?.withdrawals?.reduce(
+											(acc: any, withdrawal: any) => acc + withdrawal.amount,
+											0
+										)}
+									</h6>
 								</div>
 							</div>
 						</div>
