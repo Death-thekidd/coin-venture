@@ -221,8 +221,16 @@ const User = () => {
 									<h6>Last Withdrawal</h6>
 									<h6>
 										$
-										{userData?.withdrawals?.length > 0
-											? userData?.withdrawals[userData.withdrawals.length - 1]?.amount
+										{userData?.withdrawals?.filter(
+											(withdrawal: any) => withdrawal.status != "cancelled"
+										)?.length > 0
+											? userData?.withdrawals?.filter(
+													(withdrawal: any) => withdrawal.status != "cancelled"
+											  )[
+													userData?.withdrawals?.filter(
+														(withdrawal: any) => withdrawal.status != "cancelled"
+													).length - 1
+											  ]?.amount
 											: 0}
 									</h6>
 								</div>
@@ -240,10 +248,9 @@ const User = () => {
 									<h6>Withdraw Total</h6>
 									<h6>
 										$
-										{userData?.withdrawals?.reduce(
-											(acc: any, withdrawal: any) => acc + withdrawal.amount,
-											0
-										)}
+										{userData?.withdrawals
+											?.filter((withdrawal: any) => withdrawal.status != "cancelled")
+											?.reduce((acc: any, withdrawal: any) => acc + withdrawal.amount, 0)}
 									</h6>
 								</div>
 							</div>
