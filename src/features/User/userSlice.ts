@@ -68,24 +68,24 @@ const initialState = {
 		selectedPlan: {},
 		methods: [
 			{
-				address: "bc1qeclky6zl4sg2ceklusxsex3ww5us0hasjvf8lh",
+				address: "",
 				name: "Bitcoin",
 			},
 			{
-				address: "0xF77773dA8e165a62e8DF8833Dd2865c2Ac0f7058",
-				name: "Ethereum",
+				address: "",
+				name: "...",
 			},
 			{
-				address: "TUXEq2VMAfr4XDRB7nKAGcMLGS7wQZZTa8",
+				address: "...",
 				name: "Usdt Trc20",
 			},
-			{ address: "TUXEq2VMAfr4XDRB7nKAGcMLGS7wQZZTa8", name: "Tron" },
+			{ address: "...", name: "Tron" },
 			{
-				address: "ltc1qv0gx64jkvtnf873uvxuzmt707ylcwdjx320798",
+				address: "...",
 				name: "Litecoin",
 			},
 			{
-				address: "P1107468462",
+				address: "...",
 				name: "Payeer",
 			},
 		],
